@@ -7,8 +7,6 @@ class AutomaticGame:public MyGame{
     AutomaticGame();
     AutomaticGame(Board, Dice,int,int);
     virtual void startGame() override;
-
-    private:
 };
 
 AutomaticGame::AutomaticGame(){}

@@ -19,7 +19,6 @@ class MyGame{
     bool gameEnded() const;
     void setGameState(bool);
     virtual void startGame() =0;
-    //friend ostream &operator <<(ostream& salida, const );
 
     private:
     Board myBoard;
@@ -63,24 +62,19 @@ void MyGame::startPlayers(){
 std::string MyGame::turn(int _playerNumber){
     std::string type;
     std::string message;
-    //std::string playerNo=std::to_string(players[_playerNumber-1].getNumber());
     Tile currentTile=players[_playerNumber-1].getTile();
-    //std::string tileString=std::to_string(currentTile.getNumberOfTile());
     int roll=gameDice.roll();
     int advance=roll+currentTile.getNumberOfTile()-1;
     if (advance>=myBoard.getBoardTiles().back().getNumberOfTile()){
         advance=myBoard.getBoardTiles().back().getNumberOfTile();
     }
-    //std::string message=std::to_string(turnNo) + " " + playerNo + " " + tileString + " " + std::to_string(roll);
     Tile endTile=myBoard.getBoardTiles()[advance];
     int no_tile=endTile.getNumberOfTile();
     no_tile=currentTile+endTile; //sobrecarga de operadores
     if (endTile.getTypeOfTile()==1){
-        //no_tile-=myBoard.getSnakePenalty(); //se puede mejorar con apuntadores y polimorfismo
         type="S";
     }
     if (endTile.getTypeOfTile()==2){
-        //no_tile+=myBoard.getLaderReward(); //se puede mejorar con apuntadores y polimorfismo
         type="L";
     }
     if (endTile.getTypeOfTile()==0){
@@ -90,7 +84,6 @@ std::string MyGame::turn(int _playerNumber){
     if (players[_playerNumber-1].getTile().getNumberOfTile()==0 && turnNo!=1){
         players[_playerNumber-1].setTile(myBoard.getBoardTiles().back().getNumberOfTile());
     };
-    //std::string strTile=std::to_string(players[_playerNumber-1].getTile().getNumberOfTile());
     Turn turno=Turn(_playerNumber,currentTile,roll,players[_playerNumber-1].getTile(),type,turnNo);
     std::cout<<turno<<std::endl; //sobrecarga de operadores
     if (players[_playerNumber-1].getTile().getNumberOfTile()==myBoard.getBoardTiles().back().getNumberOfTile()){
