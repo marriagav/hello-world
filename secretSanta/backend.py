@@ -74,7 +74,6 @@ Have a great day :)""")
             msg = MIMEMultipart()       # create a message
             priceStr="$"+str(self.starting_prize)+" a $" + str(self.ending_prize)
             message = self.message.substitute(PERSON_NAME=x.name,SECRETSANTA_NAME=x.secretSanta.name, PRECIOS=priceStr)
-            #message=message.substitute(SECRETSANTA_NAME=x.secretSanta.name)
             # setup the parameters of the message
             msg['From']=self.adress
             msg['To']=x.email
