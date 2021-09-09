@@ -22,7 +22,6 @@ def divideIndexes(ratings):
     sinVer=[]
     vistas=[]
     for x in range(len(ratings)):
-        #print(ratings[x])
         if ratings[x]==0:
             sinVer.append(x)
         else:
@@ -36,12 +35,9 @@ def getNewBase(dataf,lista):
 #Función que calcula distancia entre dos coordenadas
 def dist(coord1,coord2):
     dist=0
-    #print (coord1[1])
-    #print (coord2[1])
     for x in range (len(coord1)):
         dist+=(coord1[x] -coord2[x])**2
     dist=dist**(1/2)
-    #print(dist)
     return dist
 
 #Función que acepta una lista y regresa una lista de lista con índices
@@ -53,11 +49,8 @@ def putInd(lista1):
 
 #Función que acepta un entero y una lista, regresa los k elementos más pequeños
 def kMin(K, lista):
-    #accum=[]
     lista.sort()
     accum=lista[:K]
-    #for i in range(K):
-        #accum.append(lista[i])
     return accum
 
 def maxPun(base):
@@ -79,26 +72,18 @@ def recomendar(K,base):
     baseVistas=getNewBase(base,vistas)
     baseSinVer=getNewBase(base,sinVer)
 
-    #print(baseVistas)
-    #print(views)
-    #print(sinVer)
-
     listaDistancias=[]
     for index, row in baseVistas.iterrows():
-        #print(row)
         listaDistancias.append(dist(row,views))
 
     listaIndex=putInd(listaDistancias)
     Ksmallest=kMin(K,listaIndex)
-    #print(listaIndex)
-    #print(Ksmallest)
-
+    
     smallestInd=[]
     for j in Ksmallest:
         smallestInd.append(j[-1])
     
     nearEst=baseSinVer.iloc[smallestInd,:]
-    #print(nearEst)
     return(maxPun(nearEst))
 
 
@@ -112,23 +97,8 @@ def main():
     baseP_df = pd.read_csv("CF.csv", index_col = 0)
     baseP_df=baseP_df.drop('Y', axis = 1)
 
-    #Toy Dataset
-    # peliculas = ['Exmachina', 'Yo, Robot', 'Inteligencia Artificial', '2001, odisea', 'Matrix', 'Blade Runner']
-    # basep = [[3, 4, 3, 4, 4, 2], [3, 5, 3, 4, 5, 4], [3, 4.5, 5, 3, 4, 3], [3.5, 4, 3.5, 4.5, 5, 5], [4.5, 3.5, 4, 4, 4.5, 4],
-    #         [3, 4.5, 4, 3, 2.5, 3], [4, 4.5, 3.5, 5, 4, 4], [5, 4.5, 4, 4, 4.5, 4.5], [3.5, 3, 4, 5, 3.5, 4.5],
-    #         [3, 5, 1, 4.5, 3.5, 1.5], [3, 5, 3, 4, 5, 3.5], [2.5, 4.5, 3, 3, 3.5, 4.5], [3.5, 5, 2.5, 3, 4.5, 5]]
-    # baseP_df = pd.DataFrame(basep, columns = peliculas)
-
-    #print(baseP_df)
     print("CASOS DE PRUEBA:")
     print(mnsj,recomendar(3,baseP_df))
-    # print(mnsj,recomendar(2, baseP_df, ratings = [4.5, 0, 4, 4.5, 0, 5]))
-    # print(mnsj,recomendar(2, baseP_df, [3, 0, 5, 3, 0, 4]))
-    # print(mnsj,recomendar(3, baseP_df, [5, 0, 0, 0, 4, 2]))
-    # print(mnsj,recomendar(5, baseP_df, [4, 0, 0, 0, 3, 3]))
-    # print(mnsj,recomendar(7, baseP_df, [4, 5, 5, 0, 5, 0]))
-    # print(mnsj,recomendar(7, baseP_df, [4.5, 0, 0, 0, 4.5, 5]))
-    # print(mnsj,"Shrek")
 
 
 main()
