@@ -5,4 +5,4 @@ My first GitHub repository, which includes some projects:
 - A python program that uses machine learning (KNN algorythm) to recommend movies
 
 # A note about language
-Some of tese programs are in spanish, since it is my native language.
+Some of these programs are in spanish, since it is my native language.
