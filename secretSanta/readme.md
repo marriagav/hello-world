@@ -1,5 +1,5 @@
 ## Download working build
-### Windows: https://drive.google.com/uc?export=download&id=1MIvMtZpvVlfCDu8xcNAiWIPq80usEE2f
+### A fully functional build for the app (for Windows) can be found under "releases" of the repository.
 
 Secret santa python app that sends emails to its participants.
 Built using tkinter.
